@@ -1,6 +1,7 @@
 // [SECTION] Dependencies and Modules
 const express = require("express");
 const mongoose = require("mongoose");
+require('dotenv').config();
 
 // Allows our backend application to be available to our frontend application
 // Allows us to control the app's Cross-Origin Resources Sharing settings
@@ -18,14 +19,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
-// app.use(
-// 	cors({
-// 		origin: ["http://localhost:4000", "https://b384-csp3-reyes-dalay.onrender.com"]
-// 	})
-// );
 
 // [SECTION] Database Connection
-mongoose.connect("mongodb+srv://reyesryandave:admin@cluster0.rfy1rol.mongodb.net/ecommerce-product?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGO_URL)
 
 mongoose.connection.once('open', () => console.log('Now connected to MongoDB Atlas.'));
 
