@@ -17,7 +17,11 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(cors());
+app.use(
+	cors({
+		origin: ["http://localhost:4000", "https://b384-csp3-reyes-dalay-backend.onrender.com"]
+	})
+);
 
 // [SECTION] Database Connection
 mongoose.connect("mongodb+srv://reyesryandave:admin@cluster0.rfy1rol.mongodb.net/ecommerce-product?retryWrites=true&w=majority")
